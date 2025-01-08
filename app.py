@@ -4,27 +4,8 @@ import os
 import shutil
 import streamlit as st
 
-# Add a custom favicon
-def add_favicon():
-    favicon_path = "favicon.ico"
-    st.markdown(
-        f"""
-        <style>
-        [data-testid="stAppViewContainer"] {{
-            background-color: white;
-        }}
-        [data-testid="stAppHeader"] {{
-            display: none;
-        }}
-        </style>
-        <link rel="icon" href="{https://files.oaiusercontent.com/file-4eeb5jbhdvKg9DSfKKPki1?se=2025-01-08T19%3A07%3A25Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D9ff4aaf9-7a3a-45f3-b5e5-3548397e0bf5.webp&sig=YB6P0mxI7Q0NloZbWSBi5DfnE/dR/fwpuTfizsBROCs%3D}" type="image/x-icon">
-        """,
-        unsafe_allow_html=True,
-    )
-
 # Streamlit app
 def main():
-    add_favicon()  # Add the favicon to the app
     st.title("Image Downloader")
     st.write("Upload an Excel file with image links and filenames to download images.")
 
