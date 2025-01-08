@@ -8,6 +8,7 @@ import streamlit as st
 def main():
     st.title("Image Downloader")
     st.write("Upload an Excel file with image links and filenames to download images.")
+    st.set_page_config(page_icon="https://essent-ia.com/wp-content/uploads/2024/11/cropped-cropped-Picture1.png")
 
     # Step 1: Upload the Excel file
     uploaded_file = st.file_uploader("Upload Excel file", type=['xlsx'])
