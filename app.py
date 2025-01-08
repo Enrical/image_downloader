@@ -28,49 +28,51 @@ def main():
         url_column = st.selectbox("Select the column for image URLs:", data.columns)
         name_column = st.selectbox("Select the column for filenames:", data.columns)
 
-        if not url_column or not name_column:
-            st.error("Please select both columns to proceed.")
-            return
+        # Add a button to confirm and start the download process
+        if st.button("Download Images"):
+            if not url_column or not name_column:
+                st.error("Please select both columns to proceed.")
+                return
 
-        # Step 4: Create the output folder
-        output_folder = 'downloaded_images'
-        os.makedirs(output_folder, exist_ok=True)
+            # Step 4: Create the output folder
+            output_folder = 'downloaded_images'
+            os.makedirs(output_folder, exist_ok=True)
 
-        # Step 5: Download the images
-        st.write("Starting image downloads...")
-        for idx, row in data.iterrows():
-            link = row[url_column]
-            name = row[name_column]
-            # Clean the name to make it a valid filename
-            cleaned_name = ''.join(c for c in name if c.isalnum() or c in " _-").strip()
-            file_path = os.path.join(output_folder, f'{cleaned_name}.jpg')  # Adjust extension if needed
+            # Step 5: Download the images
+            st.write("Starting image downloads...")
+            for idx, row in data.iterrows():
+                link = row[url_column]
+                name = row[name_column]
+                # Clean the name to make it a valid filename
+                cleaned_name = ''.join(c for c in name if c.isalnum() or c in " _-").strip()
+                file_path = os.path.join(output_folder, f'{cleaned_name}.jpg')  # Adjust extension if needed
 
-            try:
-                response = requests.get(link, stream=True)
-                if response.status_code == 200:
-                    # Save the image
-                    with open(file_path, 'wb') as file:
-                        for chunk in response.iter_content(1024):
-                            file.write(chunk)
-                    st.write(f"Downloaded: {cleaned_name}.jpg")
-                else:
-                    st.warning(f"Failed to download {link} - Status Code: {response.status_code}")
-            except Exception as e:
-                st.error(f"Error downloading {link}: {e}")
+                try:
+                    response = requests.get(link, stream=True)
+                    if response.status_code == 200:
+                        # Save the image
+                        with open(file_path, 'wb') as file:
+                            for chunk in response.iter_content(1024):
+                                file.write(chunk)
+                        st.write(f"Downloaded: {cleaned_name}.jpg")
+                    else:
+                        st.warning(f"Failed to download {link} - Status Code: {response.status_code}")
+                except Exception as e:
+                    st.error(f"Error downloading {link}: {e}")
 
-        # Step 6: Compress the images into a ZIP file
-        zip_file_name = 'downloaded_images.zip'
-        shutil.make_archive('downloaded_images', 'zip', output_folder)
-        st.success("All images downloaded and compressed into a ZIP file.")
+            # Step 6: Compress the images into a ZIP file
+            zip_file_name = 'downloaded_images.zip'
+            shutil.make_archive('downloaded_images', 'zip', output_folder)
+            st.success("All images downloaded and compressed into a ZIP file.")
 
-        # Step 7: Provide the ZIP file for download
-        with open(zip_file_name, 'rb') as zip_file:
-            st.download_button(
-                label="Download ZIP File",
-                data=zip_file,
-                file_name=zip_file_name,
-                mime='application/zip'
-            )
+            # Step 7: Provide the ZIP file for download
+            with open(zip_file_name, 'rb') as zip_file:
+                st.download_button(
+                    label="Download ZIP File",
+                    data=zip_file,
+                    file_name=zip_file_name,
+                    mime='application/zip'
+                )
 
 if __name__ == "__main__":
     main()
