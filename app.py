@@ -8,7 +8,17 @@ import streamlit as st
 def main():
     st.title("Image Downloader")
     st.write("Upload an Excel file with image links and filenames to download images.")
-
+ # Add a LinkedIn link
+    st.markdown(
+        """
+        <div style="text-align: center;">
+            <a href="https://www.linkedin.com/in/enrique-calvo-ramos" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:50px; height:50px;">
+            </a>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     # Step 1: Upload the Excel file
     uploaded_file = st.file_uploader("Upload Excel file", type=['xlsx'])
     if uploaded_file is not None:
