@@ -6,9 +6,7 @@ import streamlit as st
 
 # Streamlit app
 def main():
-    st.title("Image Downloader")
-    st.write("Upload an Excel file with image links and filenames to download images.")
- # Add a LinkedIn link
+    # Add a LinkedIn link
     st.markdown(
         """
         <div style="text-align: center;">
@@ -19,6 +17,9 @@ def main():
         """,
         unsafe_allow_html=True,
     )
+    st.title("Image Downloader")
+    st.write("Upload an Excel file with image links and filenames to download images.")
+ 
     # Step 1: Upload the Excel file
     uploaded_file = st.file_uploader("Upload Excel file", type=['xlsx'])
     if uploaded_file is not None:
