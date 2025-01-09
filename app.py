@@ -6,10 +6,9 @@ import streamlit as st
 
 # Streamlit app
 def main():
-    st.markdown(
-    '<link rel="icon" href="favicon.ico" type="image/x-icon">',
-    unsafe_allow_html=True,
-)    
+    st.set_page_config(page_title="Image downloader",
+                       page_icon="favicon.ico",
+                       layout="centered")
     st.title("Image Downloader")
     st.write("Upload an Excel file with image links and filenames to download images.")
  
