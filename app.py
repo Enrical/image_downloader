@@ -6,17 +6,7 @@ import streamlit as st
 
 # Streamlit app
 def main():
-    # Add a LinkedIn link
-    st.markdown(
-        """
-        <div style="text-align: center;">
-            <a href="https://www.linkedin.com/in/enrique-calvo-ramos" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:50px; height:50px;">
-            </a>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    
     st.title("Image Downloader")
     st.write("Upload an Excel file with image links and filenames to download images.")
  
@@ -84,6 +74,17 @@ def main():
                     file_name=zip_file_name,
                     mime='application/zip'
                 )
+                # Add a LinkedIn link
+    st.markdown(
+        """
+        <div style="text-align: center;">
+            <a href="https://www.linkedin.com/in/enrique-calvo-ramos" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:50px; height:50px;">
+            </a>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 if __name__ == "__main__":
     main()
