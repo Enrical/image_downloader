@@ -79,7 +79,7 @@ def main():
         """
         <div style="text-align: center;">
             <a href="https://www.linkedin.com/in/enrique-calvo-ramos" target="_blank">
-            Made with care
+            Made with love by 
                 <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:50px; height:50px;">
             </a>
         </div>
